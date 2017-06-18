@@ -6,7 +6,7 @@ import React from 'react';
       <header className="top">
         <h1>
           Catch
-        <span classname ="ofThe">
+        <span className="ofThe">
           <span className="of">of</span>
           <span className="the">the</span>
         </span>
