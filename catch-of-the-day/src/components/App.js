@@ -6,8 +6,6 @@ import Fish from './Fish';
 import sampleFishes from '../sample-fishes';
 import base from '../base';
 
-
-
   class App extends React.Component {
     constructor(){
       super();
@@ -24,21 +22,33 @@ import base from '../base';
     }
 
   componentWillMount() {
-    this.ref = base.syncState(`${this.props.params.storeId}/fishes`
-      , {
+    //this runs right before the <App> is rendered
+    this.ref = base.syncState(`${this.props.params.storeId}/fishes`, {
       context: this, 
       state: 'fishes' 
     });
-  }
+
+    //check if there is any order in localStorage
+    const localStorageRef = localStorage.getItem(`order-${this.props.params.storeId}`)
+
+    if(localStorageRef) {
+      //update our App Component's order state
+      this.setState({
+        order: JSON.parse(localStorageRef)
+      });
+    }
+  
+   }
 
   componentWillUnmount() {
   base.removeBinding(this.ref);
-  }
+  } 
 
   componentWillUpdate(nextProps, nextState) {
     // console.log('Something Changed');
     // console.log({nextProps, nextState}); 
-    localStorage.setItem(`order-${this.props.params.storeId}`)
+    localStorage.setItem(`order-${this.props.params.storeId}`, 
+         JSON.stringify(nextState.order));
   }
 
 
@@ -86,8 +96,9 @@ import base from '../base';
           fishes={this.state.fishes} 
           order={this.state.order}
           params={this.props.params}
-        />
-        <Inventory addFish={this.addFish} loadSamples={this.loadSamples} />
+          />
+        <Inventory addFish={this.addFish} loadSamples={this.
+          loadSamples} fishes={this.state.fishes} />
       </div>
     )
   }
