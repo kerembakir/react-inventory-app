@@ -9,7 +9,7 @@ import { formatPrice } from '../helpers';
 
   renderOrder(key) {
     const fish = this.props.fishes[key];
-    const count = this .props.order[key];
+    const count = this.props.order[key];
 
     if(!fish || fish.status === 'unavailable') {
       return <li key={key}>Sorry, {fish ? fish.name : 'fish'} is no longer available! </li>
