@@ -11,10 +11,11 @@ import base from '../base';
       super();
 
       this.addFish = this.addFish.bind(this);
+      this.removeFish = this.removeFish.bind(this);
       this.updateFish = this.updateFish.bind(this);
       this.loadSamples = this.loadSamples.bind(this);
       this.addToOrder = this.addToOrder.bind(this);
-
+      this.removeFromOrder = this.removeFromOrder.bind(this);
       //getinitialState
       this.state = {
         fishes: {},
@@ -68,6 +69,12 @@ import base from '../base';
     this.setState({ fishes });
   }
 
+  removeFish(key) {
+    const fishes = {...this.state.fishes};
+    fishes[key] = null; //here we can't use delete because limited by firebase
+    this.setState({ fishes });
+  }
+
   loadSamples() {
     this.setState({
       fishes: sampleFishes
@@ -82,6 +89,12 @@ import base from '../base';
   //update our state { order: order -> order
   this.setState({ order }); 
  }
+
+ removeFromOrder(key) {
+    const order = {...this.state.order};
+    delete order[key]; //here we can use delete because we're not limited by firebase
+    this.setState({ order });  
+}
 
  render() {
     return (
@@ -101,9 +114,11 @@ import base from '../base';
           fishes={this.state.fishes} 
           order={this.state.order}
           params={this.props.params}
+          removeFromOrder={this.removeFromOrder}
           />
         <Inventory 
-          addFish={this.addFish} 
+          addFish={this.addFish}
+          removeFish={this.removeFish} 
           loadSamples={this.loadSamples} 
           fishes={this.state.fishes}
           updateFish={this.updateFish} 
