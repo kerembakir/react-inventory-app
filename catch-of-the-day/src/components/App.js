@@ -11,6 +11,7 @@ import base from '../base';
       super();
 
       this.addFish = this.addFish.bind(this);
+      this.updateFish = this.updateFish.bind(this);
       this.loadSamples = this.loadSamples.bind(this);
       this.addToOrder = this.addToOrder.bind(this);
 
@@ -51,8 +52,6 @@ import base from '../base';
          JSON.stringify(nextState.order));
   }
 
-
-
   addFish(fish){
     //update our state
     const fishes = {...this.state.fishes};
@@ -60,6 +59,12 @@ import base from '../base';
     const timestamp = Date.now(); 
     fishes[`fish-${timestamp}`] = fish; 
     //set state
+    this.setState({ fishes });
+  }
+
+  updateFish(key, updatedFish) {
+    const fishes = {...this.state.fishes};
+    fishes[key] = updatedFish;
     this.setState({ fishes });
   }
 
@@ -97,8 +102,12 @@ import base from '../base';
           order={this.state.order}
           params={this.props.params}
           />
-        <Inventory addFish={this.addFish} loadSamples={this.
-          loadSamples} fishes={this.state.fishes} />
+        <Inventory 
+          addFish={this.addFish} 
+          loadSamples={this.loadSamples} 
+          fishes={this.state.fishes}
+          updateFish={this.updateFish} 
+        />
       </div>
     )
   }
