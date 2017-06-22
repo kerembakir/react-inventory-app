@@ -1,4 +1,4 @@
- import React from 'react';
+import React from 'react';
 
 class AddFishForm extends React.Component {
   createFish(event){
@@ -29,6 +29,10 @@ class AddFishForm extends React.Component {
       </form> 
       )
   }
+}
+
+AddFishForm.propTypes = {
+  addFish: React.PropTypes.func.isRequired
 }
 
 export default AddFishForm;

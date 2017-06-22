@@ -19,6 +19,20 @@ class Inventory extends React.Component {
     this.props.updateFish(key, updatedFish);
   }
 
+renderLogin() {
+  return (
+    <nav className="login">
+      <h2>Inventory</h2>
+      <p>Sign in to manga your store's inventory</p>
+      <button className="github" onClick={() => this.authenticate('github')} >Log in with Github</button>
+      <button className="facebook" onClick={() => this.authenticate('facebook')} >Log in with Facebook</button>
+      <button className="twitter" onClick={() => this.authenticate('twitter')} >Log in with Twitter</button>
+
+
+    </nav>
+
+    )
+}
 
   renderInventory(key) {
     const fish = this.props.fishes[key];
@@ -46,6 +60,7 @@ class Inventory extends React.Component {
   }
 
   render() {
+    
     return (
       <div>
         <h2>Inventory</h2>
@@ -56,5 +71,13 @@ class Inventory extends React.Component {
     )
   }
 }
+
+Inventory.propTypes = {
+  fishes: React.PropTypes.object.isRequired,
+  updateFish: React.PropTypes.func.isRequired,
+  removeFish: React.PropTypes.func.isRequired,
+  addFish: React.PropTypes.func.isRequired,
+  loadSamples: React.PropTypes.func.isRequired
+};
 
 export default Inventory;

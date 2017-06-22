@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import { formatPrice } from '../helpers';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -69,5 +69,11 @@ import CSSTransitionGroup from 'react-addons-css-transition-group';
     )
   }
 }
+
+Order.propTypes = {
+  fishes: React.PropTypes.object.isRequired, 
+  order: React.PropTypes.object.isRequired,
+  removeFromOrder: React.PropTypes.func.isRequired
+};
 
 export default Order;

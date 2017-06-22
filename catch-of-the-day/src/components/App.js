@@ -114,7 +114,7 @@ import base from '../base';
           fishes={this.state.fishes} 
           order={this.state.order}
           params={this.props.params}
-          removeFromOrder={this.sremoveFromOrder}
+          removeFromOrder={this. removeFromOrder}
           />
         <Inventory 
           addFish={this.addFish}
@@ -126,6 +126,10 @@ import base from '../base';
       </div>
     )
   }
+}
+
+App.propTypes = {
+  params: React.PropTypes.object.isRequired
 }
 
 export default App;
