@@ -114,14 +114,15 @@ import base from '../base';
           fishes={this.state.fishes} 
           order={this.state.order}
           params={this.props.params}
-          removeFromOrder={this. removeFromOrder}
+          removeFromOrder={this.removeFromOrder}
           />
         <Inventory 
           addFish={this.addFish}
           removeFish={this.removeFish} 
           loadSamples={this.loadSamples} 
           fishes={this.state.fishes}
-          updateFish={this.updateFish} 
+          updateFish={this.updateFish}
+          storeId={this.props.params.storeId} 
         />
       </div>
     )
